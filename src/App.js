@@ -1,25 +1,44 @@
-import logo from './logo.svg';
 import './App.css';
+import Greeting from './components/Greeting';
+import FindSum from './components/FindSum';
+import MakeButton from './components/MakeButton';
+import { useState } from 'react';
+import Counter from './components/Counter';
 
 function App() {
+  const full_name = "Abdul Doe";
+  let x = 10;
+let y = 20;
+
+const [currentText, setCurrentText] = useState("Stoney")
+const [count, setCount] = useState(0);
+
+
+const changeButtonText = () => {
+  setCurrentText(prevText => prevText === "Stoney" ? "Fanta" : "Stoney")
+
+};
+
+const increaseCountButton = () => {
+  setCount(count + 1)
+  console.log("Button Clicked!!")
+}
+
+const decreaseCountButton = () => {
+  setCount(count - 1)
+}
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Greeting full_name={full_name} />  
+          <FindSum x={x} y={y} />
+          <MakeButton buttonText={currentText} changeButtonText={changeButtonText}/>
+          <Counter increaseCountButton={increaseCountButton} decreaseCountButton={decreaseCountButton}  count={count} />
     </div>
-  );
+  )
 }
+
+
 
 export default App;
